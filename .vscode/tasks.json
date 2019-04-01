@@ -12,10 +12,10 @@
             "label": "LOVE",
             // The command is the path to your love install exe.
             "command": "C:\\Program Files\\LOVE\\love.exe",
-            // args are appended onto the command run, just like a batch file
+            // args are appended onto the command ran as arguments. For love we want the source folder:
             "args": ["${workspaceRoot}"],        
         
-            // The command is a shell script, and not just a normal command
+            // The command is a proces
             "type": "process",
         
             "presentation": {
