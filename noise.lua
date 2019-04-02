@@ -6,7 +6,7 @@ function noise(width, height, smoothingAmount)
     for x = 1, width do
         for y = 1, height do
             grid[x] = grid[x] or {}
-            grid[x][y] = love.math.noise( x + love.math.random(), y + love.math.random() )
+            grid[x][y] = love.math.noise(x + love.math.random(), y + love.math.random())
         end
     end
 

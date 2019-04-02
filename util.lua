@@ -111,3 +111,16 @@ function table.addAll(table)
     end
     return ret
 end
+
+function table.print(input, nonRecursive)
+    if type(input) ~= "table" then
+        return input
+    end
+    for i, d in pairs(input) do
+        if not nonRecursive then
+        print(i, table.print(d))
+        else
+        print(i, d)
+        end
+    end
+end

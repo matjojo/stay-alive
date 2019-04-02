@@ -18,7 +18,8 @@ function love.load(arg)
 
 	debug = { -- Set up some debug switches
 		["showMouseCoordsWhenPressed"] = false,
-		["showMouseCoordsWhenScroll"] = true,
+        ["showMouseCoordsWhenScroll"] = false,
+        ["showKeyPressed"] = false,
 	}
 
 	-- The world uses a small noise method
@@ -39,6 +40,18 @@ function love.load(arg)
 	ScrollLocationX, ScrollLocationY = 0, 0
 
 end
+
+--[[
+TODO:
+    Fix the wheel scrolling thing. We want what is under the mouse to still be under the mouse when scrolling
+
+
+--]]
+
+
+
+
+
 
 function love.update(dt)
 -- Handling input
@@ -85,13 +98,15 @@ function love.update(dt)
 end -- love.update
 
 function love.draw(dt)
-	love.graphics.setColor(1,1,1,1)
-	love.graphics.setLineWidth(math.floor(Settings.interface.borderWidth * Camera:getScale()))
-
+    
 	Camera:draw(function(l,t,w,h)
 		-- Placing the background on the map
+        World:draw(l, t, w, h)
+        -- Draw the world and then draw the debug square and the barrier
+        love.graphics.setColor(1,1,1,1)
+        love.graphics.setLineWidth(math.floor(Settings.interface.borderWidth * Camera:getScale()))
 		love.graphics.rectangle("line", 0, 0, Settings.sim.worldWidth, Settings.sim.worldHeight)
-		love.graphics.rectangle("fill", 100, 100, 50, 50)
+        love.graphics.rectangle("fill", 100, 100, 50, 50)
 	end)
 
 	-- love.event.push('quit') -- for testing purposes we can quit after exactly one update and draw
@@ -113,11 +128,14 @@ function love.keypressed(k)
 	if k == "d" then
 		DPressed = true
 	end
-	print(k)
+	if debug.showKeyPressed then
+		print(k)
+	end
 end
 
 function love.mousepressed(x, y, button, istouch, presses)
 	if debug.showMouseCoordsWhenPressed then
+		print("MouseWhenPressed")
 		print(x, y)
 	end
 end
@@ -129,13 +147,14 @@ function love.wheelmoved(x, y)
 		WheelDown = true
 	end
 	
-	-- When the wheel is moved we want to move the camera in that direction for about 1/2 of the way I suppose
-	-- the distance between the mouse and the centre of the screen is half of the moving distance
+	-- When the wheel is moved we want that location to still be under the mouse!!!
 
 	local x, y = love.mouse.getPosition()
 	ScrollLocationX, ScrollLocationY = Camera:toWorld(x, y) -- where we want to centre the screen. All other mutations will be based on this.
 	if debug.showMouseCoordsWhenScroll then
+		print("MouseWhenScrolled")
 		print(x, y)
+		print("MouseWhenScrolledToWorld")
 		print(ScrollLocationX, ScrollLocationY)
 	end
 end
