@@ -15,19 +15,21 @@ end
 
 -- Public methods
 
-function tile.new(x, y)
+function tile.new(x, y, width, height)
 
   local _world = setmetatable({ -- the 'class instance'
     x = x,
     y = y,
+    width = width,
+    height = height,
+    nutrition = 0,
   }, tileMt)
 
   return _world
 end
 
-function tile:test()
-    print("Test")
-    print(self.x, self.y)
+function tile:setNutrition(newNutrition)
+    self.nutrition = newNutrition
 end
 
 return tile

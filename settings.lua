@@ -3,6 +3,7 @@ return {
         ["animalCount"] = 200,
         ["worldHeight"] = 1000,
         ["worldWidth"] = 2000,
+        ["tileSize"] = 20, -- the size of the tile in pixels at default zoom (1)
     },
     ["interface"] = { -- user/interface settings
         ["movementSpeed"] = 2000,
@@ -15,5 +16,4 @@ return {
         ["borderWidth"] = 5,
         -- this is the size that the white border around the world will try to stay at
     },
-
 }

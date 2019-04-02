@@ -13,10 +13,6 @@ local gamera = {}
 local gameraMt = {__index = gamera}
 local abs, min, max = math.abs, math.min, math.max
 
-local function clamp(x, minX, maxX)
-  return x < minX and minX or (x>maxX and maxX or x)
-end
-
 local function checkNumber(value, name)
   if type(value) ~= 'number' then
     error(name .. " must be a number (was: " .. tostring(value) .. ")")

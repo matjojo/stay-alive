@@ -21,12 +21,15 @@ function love.load(arg)
 		["showMouseCoordsWhenScroll"] = true,
 	}
 
+	-- The world uses a small noise method
+	require("noise")
+
 	-- Set up the world
 	World = C.world.new(Settings.sim.worldWidth, Settings.sim.worldHeight)
 
 	Animals = GetFirstAnimals(Settings.sim.animalCount)
 
-	
+
 	love.window.setTitle("Stay-Alive")
 	-- This means that keypressed is called every frame instead of only on keydown
 	love.keyboard.setKeyRepeat(true)
