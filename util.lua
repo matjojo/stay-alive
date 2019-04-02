@@ -2,14 +2,14 @@
 -- Returns true if two boxes overlap, false if they don't
 -- x1,y1 are the left-top coords of the first box, while w1,h1 are its width and height
 -- x2,y2,w2 & h2 are the same, but for the second box
-function CheckCollision(x1,y1,w1,h1, x2,y2,w2,h2)
+function RectangleCollide(x1,y1,w1,h1, x2,y2,w2,h2)
     return x1 < x2+w2 and
         x2 < x1+w1 and
         y1 < y2+h2 and
         y2 < y1+h1
 end
 
-function pointIsInRectangle(px, py, tlx, tly, brx, bry)
+function PointIsInRectangle(px, py, tlx, tly, brx, bry)
   return px > tlx and
          px < brx and
          py > tly and
@@ -24,7 +24,7 @@ if type(input) ~= "table" then return input end
     return copy
 end
 
-function verticesFromSquareAsTwoPoints(data)
+function VerticesFromSquareAsTwoPoints(data)
     local vertices = {}
       -- tl
     vertices[1] = data.tl.x
@@ -41,18 +41,18 @@ function verticesFromSquareAsTwoPoints(data)
     return vertices
 end
 
-function colourEquals(one, two)
+function ColourEquals(one, two)
   return  one.r == two.r and
           one.g == two.g and
           one.b == two.b and
           one.a == two.a
 end
 
-function coloursToTable(r, g, b, a)
+function ColoursToTable(r, g, b, a)
   return {["r"] = r, ["g"] = g, ["b"] = b, ["a"] = a}
 end
 
-function rgbaFromColourTable(colour)
+function RGBAFromColourTable(colour)
   return colour.r, colour.g, colour.b, colour.a
 end
 
@@ -65,7 +65,7 @@ function table.append(a, b)
   return a
 end
 
-function table.contains(a, b) 
+function table.contains(a, b)
   for _, d in pairs(a) do
     if d == b then
       return true
@@ -74,7 +74,7 @@ function table.contains(a, b)
   return false
 end
 
-function table.reverse(input) 
+function table.reverse(input)
   local reversed = {}
 
   for i=1, #input, 1 do

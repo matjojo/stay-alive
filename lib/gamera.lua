@@ -214,6 +214,3 @@ function gamera:changeScale(ds)
 end
 -- end of edit
 return gamera
-
-
-
